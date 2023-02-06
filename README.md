@@ -1,4 +1,4 @@
-# chat_app
+# Chat App
 
 A Flutter chat application to explore Firebase, image upload, and push notifications.
 
