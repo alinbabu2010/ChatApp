@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,21 +13,13 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
     return MaterialApp(
-      title: 'Chat App',
-      theme: theme.copyWith(
-        colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.blueAccent,
-          secondary: Colors.orange,
+        title: 'Flutter Chat',
+        theme: theme.copyWith(
+          colorScheme: theme.colorScheme.copyWith(
+            primary: Colors.blueAccent,
+            secondary: Colors.orange,
+          ),
         ),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Chat app"),
-        ),
-        body: const Center(
-          child: Text("Sample text....."),
-        ),
-      ),
-    );
+        home: const ChatScreen());
   }
 }
