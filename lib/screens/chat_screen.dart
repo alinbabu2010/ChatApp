@@ -7,6 +7,7 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const collectionPath = "chats/msyeLLZyurSquPUK5HNq/messages";
     return Scaffold(
       body: StreamBuilder(
         builder: (context, snapshot) {
@@ -18,17 +19,19 @@ class ChatScreen extends StatelessWidget {
             itemCount: documents?.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(8),
-              child: Text(documents?.elementAt(index)['text']),
-            ),
+                  child: Text(documents?.elementAt(index)['text']),
+                ),
           );
         },
-        stream: FirebaseFirestore.instance
-            .collection("chats/msyeLLZyurSquPUK5HNq/messages")
-            .snapshots(),
+        stream: FirebaseFirestore.instance.collection(collectionPath).snapshots(),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          FirebaseFirestore.instance
+              .collection(collectionPath)
+              .add({'text': "This was added by clicking the button!"});
+        },
       ),
     );
   }
