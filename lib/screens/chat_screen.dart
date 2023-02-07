@@ -1,3 +1,4 @@
+import 'package:chat_app/utils/dimen.dart';
 import 'package:chat_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class ChatScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: documents?.length,
             itemBuilder: (context, index) => Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(Dimen.chatListItemPadding),
                   child: Text(documents?.elementAt(index)['text']),
                 ),
           );

@@ -1,4 +1,5 @@
-import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/auth_screen.dart';
+import 'package:chat_app/utils/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,7 @@ class ChatApp extends StatelessWidget {
           systemNavigationBarIconBrightness: Brightness.dark),
     );
     return MaterialApp(
-        title: 'Flutter Chat',
+        title: Constants.appTitle,
         theme: theme.copyWith(
           colorScheme: theme.colorScheme.copyWith(
             primary: Colors.blueAccent,

@@ -1,5 +1,6 @@
 class Constants {
 
+  static const appTitle = "Flutter Chat";
   static const obscuringCharacter = "*";
   static const emailAddress = "Email address";
   static const emailHint = "Enter your email id";
