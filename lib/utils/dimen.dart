@@ -8,4 +8,8 @@ class Dimen {
   // ChatScreen
   static const chatListItemPadding = 8.0;
 
+  // Button
+  static const buttonBorderRadius = 20.0;
+  static const buttonHorizontalPadding = 24.0;
+
 }

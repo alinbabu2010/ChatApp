@@ -1,5 +1,6 @@
-import 'package:chat_app/screens/auth_screen.dart';
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/utils/constants.dart';
+import 'package:chat_app/utils/dimen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,14 +30,27 @@ class ChatApp extends StatelessWidget {
           systemNavigationBarIconBrightness: Brightness.dark),
     );
     return MaterialApp(
-        title: Constants.appTitle,
-        theme: theme.copyWith(
-          colorScheme: theme.colorScheme.copyWith(
-            primary: Colors.blueAccent,
-            secondary: Colors.orange,
+      title: Constants.appTitle,
+      theme: theme.copyWith(
+        colorScheme: theme.colorScheme.copyWith(
+          primary: Colors.pinkAccent,
+          secondary: Colors.deepPurpleAccent,
+          background: Colors.pinkAccent,
+          brightness: Brightness.dark,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            padding: const MaterialStatePropertyAll(
+              EdgeInsets.symmetric(horizontal: Dimen.buttonHorizontalPadding),
+            ),
+            backgroundColor: const MaterialStatePropertyAll(Colors.pink),
+            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(Dimen.buttonBorderRadius))),
           ),
         ),
-        debugShowCheckedModeBanner: false,
-        home: const ChatScreen());
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const ChatScreen(),
+    );
   }
 }
