@@ -9,6 +9,11 @@ class Constants {
   static const password = "Password";
   static const passwordHint = "Enter your password";
   static const login = "Login";
+  static const signup = "Signup";
   static const createAccount = "Create new account";
+  static const haveUserAccount = "I already have an account";
+  static const emailErrorMsg = 'Please enter a valid email address';
+  static const passwordErrorMsg = 'Password must be at least 8 characters long';
+  static const usernameErrorMsg = 'Please enter at least 4 characters';
 
 }
