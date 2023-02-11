@@ -48,6 +48,16 @@ class ChatApp extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimen.buttonBorderRadius))),
           ),
         ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.pink,
+          foregroundColor: Colors.limeAccent,
+          actionsIconTheme: IconThemeData(
+            color: Colors.deepPurple
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.amberAccent
+          )
+        )
       ),
       debugShowCheckedModeBanner: false,
       home: const AuthScreen(),
