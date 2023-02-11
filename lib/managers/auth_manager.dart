@@ -29,20 +29,28 @@ class AuthManager {
     if (response.isError) {
       return response;
     } else {
-      final data = {
-        Constants.fieldUsername: username,
-        Constants.fieldEmail: email
-      };
-      function() => FirebaseFirestore.instance
-          .collection(Constants.collectionUsers)
-          .doc(response.data?.user?.uid)
-          .set(data);
-      final dbResponse = await _handle(function);
-      if (dbResponse.isSuccess) {
-        return response;
-      } else {
-        return Response<UserCredential>(message: dbResponse.message);
-      }
+      return await _setUsername(username, email, response);
+    }
+  }
+
+  Future<Response<UserCredential>> _setUsername(
+    String username,
+    String email,
+    Response<UserCredential> response,
+  ) async {
+    final data = {
+      Constants.fieldUsername: username,
+      Constants.fieldEmail: email
+    };
+    function() => FirebaseFirestore.instance
+        .collection(Constants.collectionUsers)
+        .doc(response.data?.user?.uid)
+        .set(data);
+    final dbResponse = await _handle(function);
+    if (dbResponse.isSuccess) {
+      return response;
+    } else {
+      return Response<UserCredential>(message: dbResponse.message);
     }
   }
 
