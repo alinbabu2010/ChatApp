@@ -1,4 +1,5 @@
 import 'package:chat_app/utils/response.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthManager {
@@ -17,10 +18,25 @@ class AuthManager {
     return await _handle<UserCredential>(function);
   }
 
-  Future<Response<UserCredential>> signup(String email, String password) async {
+  Future<Response<UserCredential>> signup(
+      String username, String email, String password) async {
     function() =>
         _auth.createUserWithEmailAndPassword(email: email, password: password);
-    return await _handle<UserCredential>(function);
+    final response = await _handle<UserCredential>(function);
+    if (response.isError) {
+      return response;
+    } else {
+      function() => FirebaseFirestore.instance
+          .collection('users')
+          .doc(response.data?.user?.uid)
+          .set({'username': username, 'email': email});
+      final dbResponse = await _handle(function);
+      if (dbResponse.isSuccess) {
+        return response;
+      } else {
+        return Response<UserCredential>(message: dbResponse.message);
+      }
+    }
   }
 
   Future<Response<T>> _handle<T>(Function request) async {
