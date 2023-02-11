@@ -16,6 +16,14 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = AuthManager.instance;
 
+  var _isLoading = false;
+
+  void _setLoadingIndicator(bool isLoading) {
+    setState(() {
+      _isLoading = isLoading;
+    });
+  }
+
   Future<void> _submitAuthFrom(
     String email,
     String password,
@@ -24,13 +32,17 @@ class _AuthScreenState extends State<AuthScreen> {
   ) async {
     Response<UserCredential> response;
 
+    _setLoadingIndicator(true);
+
     if (isLogin) {
       response = await _auth.signIn(email, password);
     } else {
-      response = await _auth.signup(username,email, password);
+      response = await _auth.signup(username, email, password);
     }
 
-    if(response.isSuccess) {
+    _setLoadingIndicator(false);
+
+    if (response.isSuccess) {
       print(response.data?.user);
     } else {
       handleError(response.message);
@@ -53,7 +65,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primary,
-      body: AuthForm(_submitAuthFrom),
+      body: AuthForm(_submitAuthFrom, _isLoading),
     );
   }
 }
