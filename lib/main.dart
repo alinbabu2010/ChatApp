@@ -1,4 +1,4 @@
-import 'package:chat_app/screens/chat_screen.dart';
+import 'package:chat_app/screens/auth_screen.dart';
 import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/utils/dimen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,7 +50,7 @@ class ChatApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const ChatScreen(),
+      home: const AuthScreen(),
     );
   }
 }
