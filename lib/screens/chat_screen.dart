@@ -1,4 +1,5 @@
 import 'package:chat_app/managers/auth_manager.dart';
+import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/utils/dimen.dart';
 import 'package:chat_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,7 +13,7 @@ class ChatScreen extends StatelessWidget {
     const collectionPath = "chats/msyeLLZyurSquPUK5HNq/messages";
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chat"),
+        title: const Text(Constants.chat),
         actions: [
           /// Added [DropdownButton] to explore it preferred using [PopMenuButton] instead
           DropdownButton(
@@ -20,15 +21,15 @@ class ChatScreen extends StatelessWidget {
               underline: const SizedBox(),
               items: [
                 DropdownMenuItem(
-                  value: 'logout',
+                  value: Constants.logoutKey,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [Icon(Icons.exit_to_app), Text('Logout')],
+                    children: const [Icon(Icons.exit_to_app), Text(Constants.logout)],
                   ),
                 )
               ],
               onChanged: (id) {
-                if (id == 'logout') AuthManager.instance.signOut();
+                if (id == Constants.logoutKey) AuthManager.instance.signOut();
               },
               icon: const Icon(Icons.more_vert))
         ],

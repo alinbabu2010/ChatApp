@@ -1,3 +1,4 @@
+import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/utils/response.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,10 +29,14 @@ class AuthManager {
     if (response.isError) {
       return response;
     } else {
+      final data = {
+        Constants.fieldUsername: username,
+        Constants.fieldEmail: email
+      };
       function() => FirebaseFirestore.instance
-          .collection('users')
+          .collection(Constants.collectionUsers)
           .doc(response.data?.user?.uid)
-          .set({'username': username, 'email': email});
+          .set(data);
       final dbResponse = await _handle(function);
       if (dbResponse.isSuccess) {
         return response;
