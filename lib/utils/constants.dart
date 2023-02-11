@@ -15,5 +15,6 @@ class Constants {
   static const emailErrorMsg = 'Please enter a valid email address';
   static const passwordErrorMsg = 'Password must be at least 8 characters long';
   static const usernameErrorMsg = 'Please enter at least 4 characters';
+  static const catchErrorMsg = "An error occurred. Please try some time later..";
 
 }
