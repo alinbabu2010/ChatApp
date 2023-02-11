@@ -95,7 +95,7 @@ class _AuthFormState extends State<AuthForm>
                       ),
                       textInputAction: TextInputAction.next,
                       validator: validationManager.isValidEmail,
-                      onSaved: (value) => _userEmail = value ?? "",
+                      onSaved: (value) => _userEmail = value?.trim() ?? "",
                     ),
                     AnimatedSize(
                       duration: const Duration(milliseconds: 300),
