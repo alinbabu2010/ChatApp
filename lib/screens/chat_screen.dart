@@ -1,3 +1,4 @@
+import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/dimen.dart';
 import 'package:chat_app/widgets/progress_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,28 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     const collectionPath = "chats/msyeLLZyurSquPUK5HNq/messages";
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Chat"),
+        actions: [
+          /// Added [DropdownButton] to explore it preferred using [PopMenuButton] instead
+          DropdownButton(
+              alignment: Alignment.center,
+              underline: const SizedBox(),
+              items: [
+                DropdownMenuItem(
+                  value: 'logout',
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const [Icon(Icons.exit_to_app), Text('Logout')],
+                  ),
+                )
+              ],
+              onChanged: (id) {
+                if (id == 'logout') AuthManager.instance.signOut();
+              },
+              icon: const Icon(Icons.more_vert))
+        ],
+      ),
       body: StreamBuilder(
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -20,8 +43,8 @@ class ChatScreen extends StatelessWidget {
             itemCount: documents?.length,
             itemBuilder: (context, index) => Container(
               padding: const EdgeInsets.all(Dimen.chatListItemPadding),
-                  child: Text(documents?.elementAt(index)['text']),
-                ),
+              child: Text(documents?.elementAt(index)['text']),
+            ),
           );
         },
         stream: FirebaseFirestore.instance.collection(collectionPath).snapshots(),
