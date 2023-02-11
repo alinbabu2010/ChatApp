@@ -12,6 +12,8 @@ class AuthManager {
 
   static AuthManager get instance => _authManager ??= AuthManager();
 
+  Stream<User?> get authState => _auth.authStateChanges();
+
   Future<Response<UserCredential>> signIn(String email, String password) async {
     function() =>
         _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -48,5 +50,9 @@ class AuthManager {
     } catch (error) {
       return Response(message: error.toString());
     }
+  }
+
+  void signOut() {
+    _auth.signOut();
   }
 }
