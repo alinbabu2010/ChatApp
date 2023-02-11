@@ -4,7 +4,14 @@ import 'package:chat_app/utils/dimen.dart';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {
-  const AuthForm({Key? key}) : super(key: key);
+  final void Function(
+    String email,
+    String password,
+    String username,
+    bool isLogin,
+  ) onSubmit;
+
+  const AuthForm(this.onSubmit, {Key? key}) : super(key: key);
 
   @override
   State<AuthForm> createState() => _AuthFormState();
@@ -25,7 +32,7 @@ class _AuthFormState extends State<AuthForm> {
     FocusScope.of(context).unfocus(); // Remove focus from all input fields
     if (isValidForm) {
       _formKey.currentState?.save();
-      print("$_username - $_userEmail - $_userPassword");
+      widget.onSubmit(_userEmail, _userPassword, _username, _isLogin);
     }
   }
 
