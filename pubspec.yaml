@@ -44,7 +44,7 @@ flutter_icons:
   image_path: "assets/images/chat_icon.png"
   android: true # can specify file name here e.g. "ic_launcher"
   ios: true # can specify file name here e.g. "My-Launcher-Icon"
-  adaptive_icon_background: "#f92096" # only available for Android 8.0 devices and above
+  adaptive_icon_background: "#ff4081" # only available for Android 8.0 devices and above
   adaptive_icon_foreground: "assets/images/chat_icon.png" # only available for Android 8.0 devices and above
   min_sdk_android: 21 # android min sdk min:16, default 21
   remove_alpha_ios: true
