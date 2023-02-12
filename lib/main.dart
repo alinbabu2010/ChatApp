@@ -27,7 +27,7 @@ class ChatApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.light,
           systemNavigationBarColor: Colors.pinkAccent.shade100,
           systemNavigationBarIconBrightness: Brightness.light),
     );
