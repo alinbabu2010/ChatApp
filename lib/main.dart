@@ -25,10 +25,10 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light,
-          systemNavigationBarColor: Colors.pinkAccent.shade100,
+          systemNavigationBarColor: Colors.pinkAccent,
           systemNavigationBarIconBrightness: Brightness.light),
     );
     return MaterialApp(
