@@ -1,7 +1,6 @@
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/constants.dart';
-import 'package:chat_app/utils/dimen.dart';
-import 'package:chat_app/widgets/progress_bar.dart';
+import 'package:chat_app/widgets/messages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -34,21 +33,12 @@ class ChatScreen extends StatelessWidget {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: StreamBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const ProgressBar();
-          }
-          final documents = snapshot.data?.docs;
-          return ListView.builder(
-            itemCount: documents?.length,
-            itemBuilder: (context, index) => Container(
-              padding: const EdgeInsets.all(Dimen.chatListItemPadding),
-              child: Text(documents?.elementAt(index)['text']),
-            ),
-          );
-        },
-        stream: FirebaseFirestore.instance.collection(collectionPath).snapshots(),
+      body: Container(
+        child: Column(
+          children: const [
+            Expanded(child: Messages())
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
