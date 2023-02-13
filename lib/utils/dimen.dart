@@ -16,4 +16,11 @@ class Dimen {
   static const msgContainerTopMargin = 8.0;
   static const msgContainerPadding = 8.0;
 
+  // MessageBubble
+  static const bubbleBorderRadius = 12.0;
+  static const bubblePaddingVertical = 10.0;
+  static const bubblePaddingHorizontal = 16.0;
+  static const bubbleMarginVertical = 4.0;
+  static const bubbleMarginHorizontal = 8.0;
+
 }
