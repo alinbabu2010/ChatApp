@@ -14,6 +14,9 @@ class Constants {
   static const logoutKey = "logout";
   static const chat = "Chat";
   static const collectionUsers = "users";
+  static const collectionChat = 'chat';
+  static const fieldText = 'text';
+  static const fieldCreatedAt = "createdAt";
   static const fieldUsername = "username";
   static const fieldEmail = "email";
   static const createAccount = "Create new account";
