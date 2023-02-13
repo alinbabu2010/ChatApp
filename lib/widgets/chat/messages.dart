@@ -1,10 +1,10 @@
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/constants.dart';
-import 'package:chat_app/widgets/message_bubble.dart';
-import 'package:chat_app/widgets/progress_bar.dart';
+import 'package:chat_app/widgets/chat/message_bubble.dart';
+import 'package:chat_app/widgets/helper/progress_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../managers/firestore_manager.dart';
+import '../../managers/firestore_manager.dart';
 
 class Messages extends StatelessWidget {
   const Messages({Key? key}) : super(key: key);

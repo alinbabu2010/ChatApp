@@ -1,7 +1,7 @@
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/constants.dart';
-import 'package:chat_app/widgets/messages.dart';
-import 'package:chat_app/widgets/new_messages.dart';
+import 'package:chat_app/widgets/chat/messages.dart';
+import 'package:chat_app/widgets/chat/new_messages.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -9,7 +9,6 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const collectionPath = "chats/msyeLLZyurSquPUK5HNq/messages";
     return Scaffold(
       appBar: AppBar(
         title: const Text(Constants.chat),
@@ -36,7 +35,7 @@ class ChatScreen extends StatelessWidget {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: Container(
+      body: SizedBox(
         child: Column(
           children: const [
             Expanded(child: Messages()),
