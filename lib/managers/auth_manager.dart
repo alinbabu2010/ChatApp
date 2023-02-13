@@ -16,6 +16,8 @@ class AuthManager {
 
   Stream<User?> get authState => _auth.authStateChanges();
 
+  bool isCurrentUser(String userId) => _auth.currentUser?.uid == userId;
+
   Future<Response<UserCredential>> signIn(String email, String password) async {
     final authFuture = _auth.signInWithEmailAndPassword(
       email: email,
