@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../utils/constants.dart';
 
@@ -22,9 +23,11 @@ class FireStoreManager {
   }
 
   void sendMessage(String message) {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
     _fireStore.collection(Constants.collectionChat).add({
       Constants.fieldText: message,
-      Constants.fieldCreatedAt: Timestamp.now()
+      Constants.fieldCreatedAt: Timestamp.now(),
+      Constants.fieldUserId: userId
     });
   }
 
