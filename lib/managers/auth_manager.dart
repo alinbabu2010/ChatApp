@@ -1,14 +1,15 @@
-import 'package:chat_app/utils/constants.dart';
+import 'package:chat_app/managers/firestore_manager.dart';
 import 'package:chat_app/utils/response.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthManager {
   static AuthManager? _authManager;
   late final FirebaseAuth _auth;
+  late final FireStoreManager _fireStoreManager;
 
   AuthManager() {
     _auth = FirebaseAuth.instance;
+    _fireStoreManager = FireStoreManager.instance;
   }
 
   static AuthManager get instance => _authManager ??= AuthManager();
@@ -16,16 +17,23 @@ class AuthManager {
   Stream<User?> get authState => _auth.authStateChanges();
 
   Future<Response<UserCredential>> signIn(String email, String password) async {
-    function() =>
-        _auth.signInWithEmailAndPassword(email: email, password: password);
-    return await _handle<UserCredential>(function);
+    final authFuture = _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return await _handle<UserCredential>(authFuture);
   }
 
   Future<Response<UserCredential>> signup(
-      String username, String email, String password) async {
-    function() =>
-        _auth.createUserWithEmailAndPassword(email: email, password: password);
-    final response = await _handle<UserCredential>(function);
+    String username,
+    String email,
+    String password,
+  ) async {
+    final authFuture = _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    final response = await _handle<UserCredential>(authFuture);
     if (response.isError) {
       return response;
     } else {
@@ -38,15 +46,9 @@ class AuthManager {
     String email,
     Response<UserCredential> response,
   ) async {
-    final data = {
-      Constants.fieldUsername: username,
-      Constants.fieldEmail: email
-    };
-    function() => FirebaseFirestore.instance
-        .collection(Constants.collectionUsers)
-        .doc(response.data?.user?.uid)
-        .set(data);
-    final dbResponse = await _handle(function);
+    final uid = response.data?.user?.uid ?? "";
+    final dbResponse =
+        await _handle(_fireStoreManager.setUserName(username, email, uid));
     if (dbResponse.isSuccess) {
       return response;
     } else {
@@ -54,9 +56,9 @@ class AuthManager {
     }
   }
 
-  Future<Response<T>> _handle<T>(Function request) async {
+  Future<Response<T>> _handle<T>(Future request) async {
     try {
-      final response = await request();
+      final response = await request;
       return Response(data: response);
     } on FirebaseAuthException catch (exception) {
       return Response(message: exception.message);
