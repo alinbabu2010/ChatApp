@@ -22,6 +22,7 @@ class _NewMessageState extends State<NewMessage> {
 
   void _sendMessage() {
     _controller.clear();
+    FocusScope.of(context).unfocus();
     FireStoreManager.instance.sendMessage(_enteredMessage);
   }
 
@@ -42,6 +43,8 @@ class _NewMessageState extends State<NewMessage> {
               onTapOutside: (_) {
                 FocusScope.of(context).unfocus();
               },
+              textInputAction: TextInputAction.done,
+              onEditingComplete: _sendMessage,
             ),
           ),
           IconButton(
