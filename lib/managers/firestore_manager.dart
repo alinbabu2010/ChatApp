@@ -22,12 +22,18 @@ class FireStoreManager {
     return _fireStore.collection(Constants.collectionUsers).doc(uid).set(data);
   }
 
-  void sendMessage(String message) {
+  Future<DocumentSnapshot<Map<String, dynamic>>> _getUserData(String? userId) {
+    return _fireStore.collection(Constants.collectionUsers).doc(userId).get();
+  }
+
+  Future<void> sendMessage(String message) async {
     final userId = FirebaseAuth.instance.currentUser?.uid;
+    final userData = await _getUserData(userId);
     _fireStore.collection(Constants.collectionChat).add({
       Constants.fieldText: message,
       Constants.fieldCreatedAt: Timestamp.now(),
-      Constants.fieldUserId: userId
+      Constants.fieldUserId: userId,
+      Constants.fieldUsername: userData[Constants.fieldUsername]
     });
   }
 
