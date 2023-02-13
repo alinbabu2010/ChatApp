@@ -29,6 +29,7 @@ class Messages extends StatelessWidget {
                 chatDoc?.get(Constants.fieldUserId),
               ),
               key: ValueKey(chatDoc?.id),
+              username: chatDoc?.get(Constants.fieldUsername),
             );
           },
         );
