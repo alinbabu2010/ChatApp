@@ -1,7 +1,7 @@
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/widgets/messages.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:chat_app/widgets/new_messages.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -23,7 +23,10 @@ class ChatScreen extends StatelessWidget {
                   value: Constants.logoutKey,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [Icon(Icons.exit_to_app), Text(Constants.logout)],
+                    children: const [
+                      Icon(Icons.exit_to_app),
+                      Text(Constants.logout)
+                    ],
                   ),
                 )
               ],
@@ -36,17 +39,10 @@ class ChatScreen extends StatelessWidget {
       body: Container(
         child: Column(
           children: const [
-            Expanded(child: Messages())
+            Expanded(child: Messages()),
+            NewMessage(),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          FirebaseFirestore.instance
-              .collection(collectionPath)
-              .add({'text': "This was added by clicking the button!"});
-        },
       ),
     );
   }
