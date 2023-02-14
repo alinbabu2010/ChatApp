@@ -39,6 +39,15 @@ dependencies:
   firebase_core: ^2.4.1
   firebase_auth: ^4.2.6
   flutter_launcher_icons: ^0.11.0
+  flutter_native_splash: ^2.2.16
+
+flutter_native_splash:
+  color: "#ff80ab"
+  image: assets/images/chat_icon.png
+  android_12:
+    image: assets/images/chat_icon.png
+    icon_background_color: "#ff4081"
+  web: false
 
 flutter_icons:
   image_path: "assets/images/chat_icon.png"
