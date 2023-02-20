@@ -38,7 +38,7 @@ class ChatApp extends StatelessWidget {
           primary: Colors.pinkAccent,
           secondary: Colors.deepPurpleAccent,
           background: Colors.pinkAccent,
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
