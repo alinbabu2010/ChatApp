@@ -20,8 +20,10 @@ class Dimen {
   static const bubbleBorderRadius = 12.0;
   static const bubblePaddingVertical = 10.0;
   static const bubblePaddingHorizontal = 16.0;
-  static const bubbleMarginVertical = 4.0;
+  static const bubbleMarginVertical = 16.0;
   static const bubbleMarginHorizontal = 8.0;
+  static const bubbleImageTopPosition = -10.0;
+  static const bubbleImageSidePosition = 175.0;
 
   // UserImagePicker
   static const avatarRadius = 40.0;

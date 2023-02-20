@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class MessageBubble extends StatelessWidget {
   final String message;
   final String username;
+  final String userImageUrl;
   final bool isCurrentUser;
 
   const MessageBubble({
@@ -11,6 +12,7 @@ class MessageBubble extends StatelessWidget {
     required this.message,
     required this.username,
     required this.isCurrentUser,
+    required this.userImageUrl,
   }) : super(key: key);
 
   @override
@@ -18,51 +20,67 @@ class MessageBubble extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final textColor = isCurrentUser ? Colors.black : colorScheme.onSecondary;
     final textAlign = isCurrentUser ? TextAlign.end : TextAlign.start;
-    return Row(
-      mainAxisAlignment:
-          isCurrentUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+    return Stack(
+      clipBehavior: Clip.none,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: isCurrentUser ? Colors.grey.shade300 : colorScheme.secondary,
-            borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(Dimen.bubbleBorderRadius),
-              topRight: const Radius.circular(Dimen.bubbleBorderRadius),
-              bottomLeft: isCurrentUser
-                  ? const Radius.circular(Dimen.bubbleBorderRadius)
-                  : const Radius.circular(0),
-              bottomRight: isCurrentUser
-                  ? const Radius.circular(0)
-                  : const Radius.circular(Dimen.bubbleBorderRadius),
+        Row(
+          mainAxisAlignment:
+              isCurrentUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: isCurrentUser
+                    ? Colors.grey.shade300
+                    : colorScheme.secondary,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(Dimen.bubbleBorderRadius),
+                  topRight: const Radius.circular(Dimen.bubbleBorderRadius),
+                  bottomLeft: isCurrentUser
+                      ? const Radius.circular(Dimen.bubbleBorderRadius)
+                      : const Radius.circular(0),
+                  bottomRight: isCurrentUser
+                      ? const Radius.circular(0)
+                      : const Radius.circular(Dimen.bubbleBorderRadius),
+                ),
+              ),
+              width: MediaQuery.of(context).size.width * 0.45,
+              padding: const EdgeInsets.symmetric(
+                vertical: Dimen.bubblePaddingVertical,
+                horizontal: Dimen.bubblePaddingHorizontal,
+              ),
+              margin: const EdgeInsets.symmetric(
+                vertical: Dimen.bubbleMarginVertical,
+                horizontal: Dimen.bubbleMarginHorizontal,
+              ),
+              child: Column(
+                crossAxisAlignment: isCurrentUser
+                    ? CrossAxisAlignment.end
+                    : CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    username,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: textColor),
+                    textAlign: textAlign,
+                  ),
+                  Text(
+                    message,
+                    style: TextStyle(color: textColor),
+                    textAlign: textAlign,
+                  ),
+                ],
+              ),
             ),
-          ),
-          width: MediaQuery.of(context).size.width * 0.45,
-          padding: const EdgeInsets.symmetric(
-            vertical: Dimen.bubblePaddingVertical,
-            horizontal: Dimen.bubblePaddingHorizontal,
-          ),
-          margin: const EdgeInsets.symmetric(
-            vertical: Dimen.bubbleMarginVertical,
-            horizontal: Dimen.bubbleMarginHorizontal,
-          ),
-          child: Column(
-            crossAxisAlignment: isCurrentUser
-                ? CrossAxisAlignment.end
-                : CrossAxisAlignment.start,
-            children: [
-              Text(
-                username,
-                style: TextStyle(fontWeight: FontWeight.bold, color: textColor),
-                textAlign: textAlign,
-              ),
-              Text(
-                message,
-                style: TextStyle(color: textColor),
-                textAlign: textAlign,
-              ),
-            ],
-          ),
+          ],
         ),
+        Positioned(
+          top: Dimen.bubbleImageTopPosition,
+          left: isCurrentUser ? null : Dimen.bubbleImageSidePosition,
+          right: isCurrentUser ? Dimen.bubbleImageSidePosition : null,
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(userImageUrl),
+          ),
+        )
       ],
     );
   }
