@@ -15,6 +15,7 @@ class Constants {
   static const chat = "Chat";
   static const collectionUsers = "users";
   static const collectionChat = 'chat';
+  static const childUserImage = "user-image";
   static const fieldText = 'text';
   static const fieldCreatedAt = "createdAt";
   static const fieldUserId = "userId";

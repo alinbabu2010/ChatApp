@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/widgets/auth/auth_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,6 +30,7 @@ class _AuthScreenState extends State<AuthScreen> {
     String email,
     String password,
     String username,
+    File userImage,
     bool isLogin,
   ) async {
     Response<UserCredential> response;
@@ -37,13 +40,13 @@ class _AuthScreenState extends State<AuthScreen> {
     if (isLogin) {
       response = await _auth.signIn(email, password);
     } else {
-      response = await _auth.signup(username, email, password);
+      response = await _auth.signup(username, email, password,userImage);
     }
 
     _setLoadingIndicator(false);
 
     if (response.isSuccess) {
-      print(response.data?.user);
+      //print(response.data?.user);
     } else {
       handleError(response.message);
     }

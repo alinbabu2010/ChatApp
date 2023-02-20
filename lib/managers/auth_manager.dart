@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/managers/firestore_manager.dart';
 import 'package:chat_app/utils/response.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,6 +32,7 @@ class AuthManager {
     String username,
     String email,
     String password,
+    File userImage,
   ) async {
     final authFuture = _auth.createUserWithEmailAndPassword(
       email: email,
@@ -39,7 +42,7 @@ class AuthManager {
     if (response.isError) {
       return response;
     } else {
-      return await _setUsername(username, email, response);
+      return await _setUsername(username, email, response, userImage);
     }
   }
 
@@ -47,10 +50,11 @@ class AuthManager {
     String username,
     String email,
     Response<UserCredential> response,
+    File userImage,
   ) async {
     final uid = response.data?.user?.uid ?? "";
     final dbResponse =
-        await _handle(_fireStoreManager.setUserName(username, email, uid));
+        await _handle(_fireStoreManager.storeUserData(username, email, uid,userImage));
     if (dbResponse.isSuccess) {
       return response;
     } else {
