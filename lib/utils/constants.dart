@@ -21,6 +21,7 @@ class Constants {
   static const fieldUserId = "userId";
   static const fieldUsername = "username";
   static const fieldEmail = "email";
+  static const fieldImageUrl = "imageUrl";
   static const labelSendMessage = "Send a message...";
   static const labelAddImage = "Add image";
   static const imagePickError = "Please pick an image";

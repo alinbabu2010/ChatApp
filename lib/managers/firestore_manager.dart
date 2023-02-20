@@ -19,19 +19,33 @@ class FireStoreManager {
 
   static FireStoreManager get instance => _manager ?? FireStoreManager();
 
+  /// To store user data to Firebase.
+  /// Save user data to user collection in FireStore Storage
+  /// Store image file to Firebase storage and get a image URL.
   Future<void> storeUserData(
     String username,
     String email,
     String uid,
     File userImage,
   ) async {
-    final reference = _firebaseStorage.ref().child(Constants.childUserImage).child("${uid}.jpg");
-    await reference.putFile(userImage);
+    String imageUrl = await _storeImage(uid, userImage);
     final data = {
       Constants.fieldUsername: username,
-      Constants.fieldEmail: email
+      Constants.fieldEmail: email,
+      Constants.fieldImageUrl: imageUrl
     };
     return _fireStore.collection(Constants.collectionUsers).doc(uid).set(data);
+  }
+
+  /// Store image file to Firebase storage and get a image URL.
+  Future<String> _storeImage(String uid, File userImage) async {
+    final reference = _firebaseStorage
+        .ref()
+        .child(Constants.childUserImage)
+        .child("$uid.jpg");
+    await reference.putFile(userImage);
+    final imageUrl = await reference.getDownloadURL();
+    return imageUrl;
   }
 
   Future<DocumentSnapshot<Map<String, dynamic>>> _getUserData(String? userId) {
