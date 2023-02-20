@@ -59,7 +59,8 @@ class FireStoreManager {
       Constants.fieldText: message,
       Constants.fieldCreatedAt: Timestamp.now(),
       Constants.fieldUserId: userId,
-      Constants.fieldUsername: userData[Constants.fieldUsername]
+      Constants.fieldUsername: userData[Constants.fieldUsername],
+      Constants.fieldImageUrl : userData[Constants.fieldImageUrl]
     });
   }
 
