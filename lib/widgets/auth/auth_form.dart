@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/managers/validation_manager.dart';
 import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/utils/dimen.dart';
@@ -33,10 +35,24 @@ class _AuthFormState extends State<AuthForm>
   String _userEmail = "";
   String _userPassword = "";
   String _username = "";
+  File? _userImage;
+
+  void _pickedImage(File image) {
+    _userImage = image;
+  }
 
   void _trySubmit() {
     final isValidForm = _formKey.currentState?.validate() ?? false;
     FocusScope.of(context).unfocus(); // Remove focus from all input fields
+
+    if (_userImage == null && !_isLogin) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text(Constants.imagePickError),
+        backgroundColor: Theme.of(context).colorScheme.error,
+      ));
+      return;
+    }
+
     if (isValidForm) {
       _formKey.currentState?.save();
       widget.onSubmit(_userEmail, _userPassword, _username, _isLogin);
@@ -89,7 +105,7 @@ class _AuthFormState extends State<AuthForm>
                     duration: const Duration(milliseconds: 300),
                     child: SizedBox(
                       height: _isLogin ? 0 : null,
-                      child: const UserImagePicker(),
+                      child: UserImagePicker(imagePickerCallback: _pickedImage),
                     ),
                   ),
                   TextFormField(

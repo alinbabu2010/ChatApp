@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UserImagePicker extends StatefulWidget {
-  const UserImagePicker({Key? key}) : super(key: key);
+  final void Function(File pickedImage) imagePickerCallback;
+
+  const UserImagePicker({Key? key, required this.imagePickerCallback})
+      : super(key: key);
 
   @override
   State<UserImagePicker> createState() => _UserImagePickerState();
 }
 
 class _UserImagePickerState extends State<UserImagePicker> {
-
   File? _pickedImageFile;
 
   @override
@@ -28,6 +30,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
     setState(() {
       _pickedImageFile = File(pickedImage?.path ?? "");
     });
+    widget.imagePickerCallback(_pickedImageFile!);
   }
 
   Future<void> getLostData() async {
@@ -45,7 +48,6 @@ class _UserImagePickerState extends State<UserImagePicker> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,15 +55,16 @@ class _UserImagePickerState extends State<UserImagePicker> {
         CircleAvatar(
           radius: Dimen.avatarRadius,
           backgroundColor: Theme.of(context).colorScheme.primary,
-          backgroundImage: _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
+          backgroundImage:
+              _pickedImageFile != null ? FileImage(_pickedImageFile!) : null,
         ),
         TextButton.icon(
           onPressed: _pickImage,
           icon: const Icon(Icons.image),
           label: const Text(Constants.labelAddImage),
           style: ButtonStyle(
-            foregroundColor: MaterialStatePropertyAll(
-                Theme.of(context).colorScheme.primary),
+            foregroundColor:
+                MaterialStatePropertyAll(Theme.of(context).colorScheme.primary),
           ),
         ),
       ],

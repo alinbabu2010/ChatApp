@@ -22,6 +22,7 @@ class Constants {
   static const fieldEmail = "email";
   static const labelSendMessage = "Send a message...";
   static const labelAddImage = "Add image";
+  static const imagePickError = "Please pick an image";
   static const createAccount = "Create new account";
   static const haveUserAccount = "I already have an account";
   static const emailErrorMsg = 'Please enter a valid email address';
