@@ -4,6 +4,7 @@ import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/utils/dimen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -18,6 +19,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final token = await FirebaseMessaging.instance.getToken();
+  print("Token : $token");
   runApp(const ChatApp());
 }
 
