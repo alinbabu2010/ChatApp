@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/screens/auth_screen.dart';
 import 'package:chat_app/screens/chat_screen.dart';
@@ -19,8 +21,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final token = await FirebaseMessaging.instance.getToken();
-  print("Token : $token");
+  FirebaseMessaging.instance.subscribeToTopic(Constants.chat);
+  final token = await FirebaseMessaging.instance.getToken(); 
+  log("Token : $token");
   runApp(const ChatApp());
 }
 
@@ -41,33 +44,28 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
       title: Constants.appTitle,
       theme: theme.copyWith(
-        colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.pinkAccent,
-          secondary: Colors.deepPurpleAccent,
-          background: Colors.pinkAccent,
-          brightness: Brightness.light,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            padding: const MaterialStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: Dimen.buttonHorizontalPadding),
+          colorScheme: theme.colorScheme.copyWith(
+            primary: Colors.pinkAccent,
+            secondary: Colors.deepPurpleAccent,
+            background: Colors.pinkAccent,
+            brightness: Brightness.light,
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ButtonStyle(
+              padding: const MaterialStatePropertyAll(
+                EdgeInsets.symmetric(horizontal: Dimen.buttonHorizontalPadding),
+              ),
+              backgroundColor: const MaterialStatePropertyAll(Colors.pink),
+              shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(Dimen.buttonBorderRadius))),
             ),
-            backgroundColor: const MaterialStatePropertyAll(Colors.pink),
-            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(Dimen.buttonBorderRadius))),
           ),
-        ),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.pink,
-          foregroundColor: Colors.limeAccent,
-          actionsIconTheme: IconThemeData(
-            color: Colors.deepPurple
-          ),
-          iconTheme: IconThemeData(
-            color: Colors.amberAccent
-          )
-        )
-      ),
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.pink,
+              foregroundColor: Colors.limeAccent,
+              actionsIconTheme: IconThemeData(color: Colors.deepPurple),
+              iconTheme: IconThemeData(color: Colors.amberAccent))),
       debugShowCheckedModeBanner: false,
       home: StreamBuilder(
         stream: AuthManager.instance.authState,

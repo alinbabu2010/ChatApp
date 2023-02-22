@@ -14,9 +14,6 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   );
   await setupFlutterNotifications();
   showFlutterNotification(message);
-  // If you're going to use other Firebase services in the background, such as Firestore,
-  // make sure you call `initializeApp` before using other Firebase services.
-  print('Handling a background message ${message.messageId}');
 }
 
 void showFlutterNotification(RemoteMessage message) {
@@ -32,8 +29,6 @@ void showFlutterNotification(RemoteMessage message) {
           channel.id,
           channel.name,
           channelDescription: channel.description,
-          // TODO add a proper drawable resource to android, for now using
-          //      one that already exists in example app.
           icon: 'ic_stat_chat',
           color: const Color(0xffff80ab)
         ),
