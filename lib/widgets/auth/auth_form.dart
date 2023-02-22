@@ -112,6 +112,9 @@ class _AuthFormState extends State<AuthForm>
                   TextFormField(
                     key: const ValueKey(Constants.emailAddress),
                     keyboardType: TextInputType.emailAddress,
+                    autocorrect: false,
+                    textCapitalization: TextCapitalization.none,
+                    enableSuggestions: false,
                     decoration: const InputDecoration(
                       labelText: Constants.emailAddress,
                       hintText: Constants.emailHint,
@@ -130,6 +133,9 @@ class _AuthFormState extends State<AuthForm>
                             ? const SizedBox()
                             : TextFormField(
                                 key: const ValueKey(Constants.username),
+                                autocorrect: true,
+                                textCapitalization: TextCapitalization.words,
+                                enableSuggestions: false,
                                 decoration: const InputDecoration(
                                   labelText: Constants.username,
                                   hintText: Constants.usernameHint,
