@@ -31,4 +31,7 @@ class Dimen {
   static const imageMaxWidth = 150.0;
   static const imageMaxHeight = 150.0;
 
+  // BatteryStatus
+  static const statsPadding = 10.0;
+
 }

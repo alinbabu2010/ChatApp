@@ -2,6 +2,7 @@ import 'package:chat_app/managers/auth_manager.dart';
 import 'package:chat_app/utils/constants.dart';
 import 'package:chat_app/widgets/chat/messages.dart';
 import 'package:chat_app/widgets/chat/new_messages.dart';
+import 'package:chat_app/widgets/helper/batter_stats.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
@@ -73,6 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: const [
             Expanded(child: Messages()),
             NewMessage(),
+            BatteryStatus(),
           ],
         ),
       ),

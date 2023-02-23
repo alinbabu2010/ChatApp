@@ -2,6 +2,7 @@ class Constants {
 
   static const appTitle = "Flutter Chat";
   static const obscuringCharacter = "*";
+  static const channelId = "chat.dev/battery";
   static const emailAddress = "Email address";
   static const emailHint = "Enter your email id";
   static const username = "Username";
@@ -23,13 +24,16 @@ class Constants {
   static const fieldEmail = "email";
   static const fieldImageUrl = "imageUrl";
   static const labelSendMessage = "Send a message...";
+  static const labelBatteryLevel = "Battery level";
   static const labelAddImage = "Add image";
+  static const getBatteryLevel = "getBatteryLevel";
   static const imagePickError = "Please pick an image";
   static const createAccount = "Create new account";
   static const haveUserAccount = "I already have an account";
   static const emailErrorMsg = 'Please enter a valid email address';
   static const passwordErrorMsg = 'Password must be at least 8 characters long';
   static const usernameErrorMsg = 'Please enter at least 4 characters';
-  static const catchErrorMsg = "An error occurred. Please try some time later..";
+  static const catchErrorMsg =
+      "An error occurred. Please try some time later..";
 
 }
