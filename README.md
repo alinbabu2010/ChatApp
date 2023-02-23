@@ -1,6 +1,7 @@
 # Chat App
 
 A Flutter chat application to explore Firebase, image upload, and push notifications.
+Explore native method call in Flutter and adding native code.
 
 ## Getting Started
 
