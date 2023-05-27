@@ -40,7 +40,7 @@ class _AuthScreenState extends State<AuthScreen> {
     if (isLogin) {
       response = await _auth.signIn(email, password);
     } else {
-      response = await _auth.signup(username, email, password,userImage!);
+      response = await _auth.signup(username, email, password, userImage!);
     }
 
     _setLoadingIndicator(false);

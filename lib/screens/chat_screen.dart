@@ -16,7 +16,6 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
   Future<void> requestNotificationPermission() async {
     await FirebaseMessaging.instance.requestPermission(
       alert: true,
@@ -51,15 +50,12 @@ class _ChatScreenState extends State<ChatScreen> {
           DropdownButton(
               alignment: Alignment.center,
               underline: const SizedBox(),
-              items: [
+              items: const [
                 DropdownMenuItem(
                   value: Constants.logoutKey,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Icon(Icons.exit_to_app),
-                      Text(Constants.logout)
-                    ],
+                    children: [Icon(Icons.exit_to_app), Text(Constants.logout)],
                   ),
                 )
               ],
@@ -69,9 +65,9 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: const Icon(Icons.more_vert))
         ],
       ),
-      body: SizedBox(
+      body: const SizedBox(
         child: Column(
-          children: const [
+          children: [
             Expanded(child: Messages()),
             NewMessage(),
             BatteryStatus(),

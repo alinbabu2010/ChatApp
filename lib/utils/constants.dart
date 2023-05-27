@@ -1,5 +1,4 @@
 class Constants {
-
   static const appTitle = "Flutter Chat";
   static const obscuringCharacter = "*";
   static const channelId = "chat.dev/battery";
@@ -35,5 +34,4 @@ class Constants {
   static const usernameErrorMsg = 'Please enter at least 4 characters';
   static const catchErrorMsg =
       "An error occurred. Please try some time later..";
-
 }

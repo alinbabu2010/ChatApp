@@ -25,13 +25,10 @@ void showFlutterNotification(RemoteMessage message) {
       notification.title,
       notification.body,
       NotificationDetails(
-        android: AndroidNotificationDetails(
-          channel.id,
-          channel.name,
-          channelDescription: channel.description,
-          icon: 'ic_stat_chat',
-          color: const Color(0xffff80ab)
-        ),
+        android: AndroidNotificationDetails(channel.id, channel.name,
+            channelDescription: channel.description,
+            icon: 'ic_stat_chat',
+            color: const Color(0xffff80ab)),
       ),
     );
   }
@@ -56,7 +53,8 @@ Future<void> setupFlutterNotifications() async {
     'chat_notification_channel', // id
     'Chat Notifications', // title
     description:
-        'This channel is used for important notifications for Chat app.', // description
+        'This channel is used for important notifications for Chat app.',
+    // description
     importance: Importance.high,
   );
 

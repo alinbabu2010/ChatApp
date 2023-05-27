@@ -1,7 +1,6 @@
 import 'package:chat_app/utils/constants.dart';
 
 class ValidationManager {
-
   static ValidationManager? _validationManager;
 
   ValidationManager();
@@ -31,5 +30,4 @@ class ValidationManager {
     }
     return null;
   }
-
 }

@@ -22,7 +22,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseMessaging.instance.subscribeToTopic(Constants.chat);
-  final token = await FirebaseMessaging.instance.getToken(); 
+  final token = await FirebaseMessaging.instance.getToken();
   log("Token : $token");
   runApp(const ChatApp());
 }

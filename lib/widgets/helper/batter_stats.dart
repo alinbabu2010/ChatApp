@@ -22,7 +22,7 @@ class _BatteryStatusState extends State<BatteryStatus> {
           await platform.invokeMethod(Constants.getBatteryLevel);
       _setBatteryLevel(batteryLevel);
     } on Exception catch (error) {
-      print(error.toString());
+      debugPrint(error.toString());
       _setBatteryLevel(null);
     }
   }

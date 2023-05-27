@@ -1,5 +1,4 @@
 class Dimen {
-
   // AuthForm
   static const authFormCardMargin = 20.0;
   static const authFormCardPadding = 16.0;
@@ -33,5 +32,4 @@ class Dimen {
 
   // BatteryStatus
   static const statsPadding = 10.0;
-
 }

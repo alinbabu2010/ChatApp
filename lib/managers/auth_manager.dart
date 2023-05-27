@@ -53,8 +53,8 @@ class AuthManager {
     File userImage,
   ) async {
     final uid = response.data?.user?.uid ?? "";
-    final dbResponse =
-        await _handle(_fireStoreManager.storeUserData(username, email, uid,userImage));
+    final dbResponse = await _handle(
+        _fireStoreManager.storeUserData(username, email, uid, userImage));
     if (dbResponse.isSuccess) {
       return response;
     } else {

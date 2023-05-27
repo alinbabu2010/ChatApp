@@ -7,7 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../utils/constants.dart';
 
 class FireStoreManager {
-
   static FireStoreManager? _manager;
   late FirebaseFirestore _fireStore;
   late FirebaseStorage _firebaseStorage;
@@ -60,7 +59,7 @@ class FireStoreManager {
       Constants.fieldCreatedAt: Timestamp.now(),
       Constants.fieldUserId: userId,
       Constants.fieldUsername: userData[Constants.fieldUsername],
-      Constants.fieldImageUrl : userData[Constants.fieldImageUrl]
+      Constants.fieldImageUrl: userData[Constants.fieldImageUrl]
     });
   }
 
@@ -70,5 +69,4 @@ class FireStoreManager {
         .orderBy(Constants.fieldCreatedAt, descending: true)
         .snapshots();
   }
-
 }
